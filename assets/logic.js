@@ -4,9 +4,7 @@ $(document).ready(function() {
 	var count;
 	
 	var stopwatch = {
-
 		count: 4,
-
 		run: function () {
 			intervalId = setInterval(stopwatch.decrement, 1000);
 			// console.log();
@@ -30,7 +28,7 @@ $(document).ready(function() {
     var newQuiz = [ {
 			question: "This is the flag of which country?",
 			picture: './assets/images/united_states.png',
-			choices: ['U.S.A','Britain','Austrailia','Canada'],
+			choices: ['U.S.A','Britain','Australia','Canada'],
 			correct: 1,
 		},
 		{	
@@ -73,6 +71,47 @@ $(document).ready(function() {
 		// $("#show-number").html(stopwatch.stop);
 		// }
 	});
+	
+
+	
+	var numQuest = newQuiz.length;
+	var correct = 0;
+	var score = 0;
+
+	
+function result() {
+	if ($('input').is(':checked')) {
+        nextQuest(); 
+	}
+	else {
+		alert("Click a choice!");		
+	}
+}
+
+
+$('#btnNext').on('click', function() {
+	var answer = ($('input[name="choice"]:checked').val());
+	console.log(answer);
+	if (answer = newQuiz.correct) {
+		correct++;
+	}
+
+	score++;
+
+	if (score >= numQuest) {
+		$('.row').hide().fadeIn("slow");
+		$('.row').html("Quiz Complete! You scored " + correct + " out of " + numQuest + "!");
+	}
+
+	result();
+
+	// // fade in new question
+	$('#card').hide().fadeIn("slow");
+	
+	// // clear previous selection
+	$('input[name="choice"]').prop('checked', false);
+});
+
 
 	
 });
