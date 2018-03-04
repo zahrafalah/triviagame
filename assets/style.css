@@ -1,0 +1,20 @@
+body {
+    background-image: url(./images/bg.jpg);
+    font-size: 25px;
+}
+
+h1 {
+    color: red;
+    background-color: white;
+    text-align: center;
+    padding: 15px;
+    font-family: 'Ceviche One', cursive;
+}
+.container {
+    width: 860px;
+    height: 700px;
+    opacity: 0.95;
+    margin-top: 25px;
+    background-color: white;
+
+}

@@ -6,20 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TriviaGame</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/style.css"/>
+    <link rel="stylesheet" href="./assets/style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ceviche+One" rel="stylesheet">
+
 </head>
 <body>
+    <div class="container">
 
+            <h1>Fun with Flags</h1>
+                <p></p>
+                <div id="show-number">
+                <input type="button" value="Start" id="start" />
+                </div>
+            <section class="row">
 
+                <div class="questions"></div>
 
+                <div class="flag"></div>
 
+                <div class="choices">
+                    <input type="radio" name="choice" value = 0><span id="choice0"></span></br>
 
+                    <input type="radio" name="choice" value = 1><span id="choice1"></span></br>
+                    
+                    <input type="radio" name="choice" value = 2><span id="choice2"></span></br>
+                    
+                    <input type="radio" name="choice" value = 3><span id="choice3"></span></br>
+                </div>
 
-
-
+                <div>
+                    <button id="btnBack">Back</button>
+                    <button id="btnNext">Next</button>
+                </div>
+            </section>
+            
+    </div>
     
-    <script type="text/javascript" src="../assets/logic.js"></script>
+    <script type="text/javascript" src="./assets/logic.js"></script>
 </body>
 </html>
