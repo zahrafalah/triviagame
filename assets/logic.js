@@ -5,11 +5,11 @@ $(document).ready(function() {
 	
 	var stopwatch = {
 
-		count: 30,
+		count: 4,
 
 		run: function () {
 			intervalId = setInterval(stopwatch.decrement, 1000);
-			console.log(count);
+			// console.log();
 		},
 
 		decrement: function() {
@@ -24,6 +24,8 @@ $(document).ready(function() {
 			clearInterval(count);
 		}
 	};
+	
+
 
     var newQuiz = [ {
 			question: "This is the flag of which country?",
@@ -65,8 +67,12 @@ $(document).ready(function() {
 
 	$("#start").on("click", function() {
 		nextQuest();
-		stopwatch.run;
+        count = 3;
+        $("#show-number").html(stopwatch.run);
+		// if (count === 0 ) {
+		// $("#show-number").html(stopwatch.stop);
+		// }
 	});
 
-	// $("#start").on("click", stopwatch.run());
+	
 });
