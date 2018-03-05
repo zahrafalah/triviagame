@@ -3,9 +3,19 @@ $(document).ready(function() {
 	
 	var intervalId;
 	var count;
+
+
+	var correct = 0;
+	var score = 0;
+
+	var flagPic = $(`<img src=''>`);
+
+	var randomNumber;
+
+	var remainingQuestionsArray = [];
 	
 	var stopwatch = {
-		count: 4,
+		count: 5,
 		run: function () {
 			intervalId = setInterval(stopwatch.decrement, 1000);
 		},
@@ -41,6 +51,42 @@ $(document).ready(function() {
 			choices: ['England','U.S.A','France','Scotland'],
 			correct: 2,
 		},
+		// {	
+		// 	question: "This is the flag of which country?",
+		// 	picture: './assets/images/.png',
+		// 	choices: ['','','',''],
+		// 	correct: ,
+		// },
+		// {	
+		// 	question: "This is the flag of which country?",
+		// 	picture: './assets/images/.png',
+		// 	choices: ['','','',''],
+		// 	correct: ,
+		// },
+		// {	
+		// 	question: "This is the flag of which country?",
+		// 	picture: './assets/images/.png',
+		// 	choices: ['','','',''],
+		// 	correct: ,
+		// },
+		// {	
+		// 	question: "This is the flag of which country?",
+		// 	picture: './assets/images/.png',
+		// 	choices: ['','','',''],
+		// 	correct: ,
+		// },
+		// {	
+		// 	question: "This is the flag of which country?",
+		// 	picture: './assets/images/.png',
+		// 	choices: ['','','',''],
+		// 	correct: ,
+		// },
+		// {	
+		// 	question: "This is the flag of which country?",
+		// 	picture: './assets/images/.png',
+		// 	choices: ['','','',''],
+		// 	correct: ,
+		// },
 		{	
 			question: "This is the flag of which country?",
 			picture: './assets/images/iran.png',
@@ -48,19 +94,32 @@ $(document).ready(function() {
 			correct: 0,
 	}];
 	
-	var flagPic = $(`<img src=''>`);
 
-	var randomNumber;
+
+	var numQuest = newQuiz.length;
+
+	for (i = 0; i < newQuiz.length; i++) {
+		var currentIndex = newQuiz[i];
+		var currentPicture = currentIndex.picture;
+		remainingQuestionsArray.push(currentPicture)
+	}
+
 
 	var getRandomNumber = function() {
-		randomNumber = Math.floor(Math.random()*newQuiz.length);
+		randomNumber = Math.floor(Math.random()*remainingQuestionsArray.length);
 	};
+
+	
+
 
 	function nextQuest(){
 		getRandomNumber();
 		$('.questions').text(newQuiz[randomNumber].question);
 		console.log(newQuiz[randomNumber].question);
 		
+		remainingQuestionsArray.splice(randomNumber, 1);
+
+
 		$(flagPic).attr('src', newQuiz[randomNumber].picture);
 		$('.flag').append(flagPic);
 
@@ -69,13 +128,18 @@ $(document).ready(function() {
 		$('#choice2').text(newQuiz[randomNumber].choices[2]);
 		$('#choice3').text(newQuiz[randomNumber].choices[3]);
 		// console.log(nextQuest);
+		if (remainingQuestionsArray.length === 0) {
+			$('.toggle').toggle()
+			$('.row').prepend("Quiz Completed! You scored " + correct + " out of " + numQuest + "!");
+			$("#show-number").hide();
+			stopwatch.stop();
+		}
 	}
-
 
 
 	$("#start").on("click", function() {
 		nextQuest();
-		count = 3;
+		count = 4;
 
 		$('.toggle').toggle();
 		
@@ -84,12 +148,6 @@ $(document).ready(function() {
 		// $("#show-number").html(stopwatch.stop);
 		// }
 	});
-	
-
-	
-	var numQuest = newQuiz.length;
-	var correct = 0;
-	var score = 0;
 
 	
 function result() {
@@ -108,14 +166,14 @@ $('#btnNext').on('click', function() {
 		correct++;
 	}
 
-	score++;
+	// score++;
 
-	if (score >= numQuest) {
-		$('.toggle').toggle() //.fadeIn("slow");
-		$('.row').prepend("Quiz Completed! You scored " + correct + " out of " + numQuest + "!");
-		$("#show-number").hide();
-		stopwatch.stop();
-	}
+	// if (score >= numQuest) {
+	// 	$('.toggle').toggle() //.fadeIn("slow");
+	// 	$('.row').prepend("Quiz Completed! You scored " + correct + " out of " + numQuest + "!");
+	// 	$("#show-number").hide();
+	// 	stopwatch.stop();
+	// }
 
 	result();
 
@@ -136,7 +194,6 @@ $('#btnBack').on('click', function() {
 		score--;
 	}
 
-	
 	nextQuest();	
 });
 	
