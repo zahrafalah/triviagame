@@ -22,13 +22,13 @@ $(document).ready(function() {
 
 		decrement: function() {
 			stopwatch.count--;
+
 			  $('#show-number').html(stopwatch.count);
 			  if (stopwatch.count === 0){
 				stopwatch.stop();
 				stopwatch.count = 4;
 				nextQuest();
-
-				stopwatch.run();
+                stopwatch.run();
 			}
 		},
 
@@ -91,8 +91,9 @@ $(document).ready(function() {
 			question: "This is the flag of which country?",
 			picture: './assets/images/iran.png',
 			choices: ['Iran','Greece','Italy','Turkey'],
-			correct: 0,
-	}];
+			correct: 0
+		}
+	];
 	
 
 
@@ -128,12 +129,14 @@ $(document).ready(function() {
 		$('#choice2').text(newQuiz[randomNumber].choices[2]);
 		$('#choice3').text(newQuiz[randomNumber].choices[3]);
 		// console.log(nextQuest);
+
 		if (remainingQuestionsArray.length === 0) {
-			$('.toggle').toggle()
+			// $('.toggle').toggle()
 			$('.row').prepend("Quiz Completed! You scored " + correct + " out of " + numQuest + "!");
 			$("#show-number").hide();
-			stopwatch.stop();
+			// stopwatch.stop();
 		}
+		
 	}
 
 
@@ -176,11 +179,7 @@ $('#btnNext').on('click', function() {
 	// }
 
 	result();
-
-	
 	$('#card').hide().fadeIn("slow");
-	
-	
 	$('input[name="choice"]').prop('checked', false);
 });
 
